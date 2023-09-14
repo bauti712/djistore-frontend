@@ -1,0 +1,67 @@
+/*estilos-globales*/
+*::after,
+*::before,
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+
+.container-items{
+    
+    display: grid;
+    
+    grid-template-columns: repeat(3,2fr);
+    grid: auto row 6fr; 
+    gap: 1px;
+    display: inline-block;
+    width: 30%;
+  margin: 10px;
+  text-align: center;
+
+
+
+
+}
+.item{
+
+    border-radius: 10px;
+    
+    
+}
+.item:hover{
+    box-shadow: 0 10px 20px  rgba(0, 0, 0, 20);
+
+
+}
+.info-producto{
+    padding: 30px 30px;
+}
+.item img{
+    width: 100%;
+    height:300px ;
+    object-fit: cover;
+}
+.fotoair2{
+    height: 600px;
+    width: 600px;
+}
+.caracteristicas-air2{
+    position: absolute;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    bottom: 200px;
+    left: 620px;
+    color: black;
+
+
+    
+
+}
+.botonesprecio {
+    display: flex;
+    gap: 1px;
+    justify-content: space-between;
+    align-items: center;
+}
