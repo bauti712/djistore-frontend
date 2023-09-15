@@ -4,25 +4,11 @@ import Inspire from '../../multimedia/Inspire.jpg'
 import Spark from '../../multimedia/spark.jpg'
 import Mini2 from '../../multimedia/Mini2.jpg'
 import Air1 from '../../multimedia/Air1.jpg'
+import { Product } from '../../models/product'
 export default function Body() {
     return (
         <body>
-            <div class="container-items">
-                <div class="item">
-                    <figure>
-                        <img src={Mini2} alt="producto-auris" />
-                    </figure>
-                    <div class="info-producto">
-                        <h2> Dji mini 2 </h2>
-                        <p class="price">$80</p>
-
-                        <button>añadir al carro</button>
-                        <button>Ver especificaciones </button>
-
-                    </div>
-                </div>
-
-            </div>
+            {buildProduct(new Product(Mini2, 'dji Mini 2', 80))}
             <div class="container-items">
                 <div class="item">
                     <figure>
@@ -92,3 +78,20 @@ export default function Body() {
     )
 }
 
+const buildProduct = (product = new Product()) => {
+    return (
+    <div class="container-items">
+    <div class="item">
+        <figure>
+            <img src={product.src} alt="producto-drone" />
+        </figure>
+        <div class="info-producto">
+            <h2>{product.name}</h2>
+            <p class="price">${product.price}</p>
+            <button>añadir al carro</button>
+            <button>Ver especificaciones </button>
+
+        </div>
+    </div>
+</div>)
+}
