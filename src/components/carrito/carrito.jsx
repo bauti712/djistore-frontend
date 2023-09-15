@@ -1,6 +1,5 @@
 import React from "react";
 import "./carrito.css";
-import {Link} from 'react-router-dom';
 import { cartData as cartDataSingleton } from '../../cart_data'
 import { Product } from "../../models/product";
 
