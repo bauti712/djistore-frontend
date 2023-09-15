@@ -5,6 +5,8 @@ import Spark from '../../multimedia/spark.jpg'
 import Mini2 from '../../multimedia/Mini2.jpg'
 import Air1 from '../../multimedia/Air1.jpg'
 import { Product } from '../../models/product'
+import { cartData as cartDataSingleton } from '../../cart_data'
+
 export default function Body() {
     return (
         <body>
@@ -88,10 +90,12 @@ const buildProduct = (product = new Product()) => {
         <div class="info-producto">
             <h2>{product.name}</h2>
             <p class="price">${product.price}</p>
-            <button>añadir al carro</button>
-            <button>Ver especificaciones </button>
-
+            <button onClick={() => {
+                cartDataSingleton.addProductToCart(product)
+            }}>añadir al carro</button>
+            <button> Ver especificaciones </button>
         </div>
     </div>
 </div>)
 }
+
