@@ -41,7 +41,6 @@ export default function Header() {
                     <li><a href="#">Filmación</a></li>
                     <Link to='/terrenos'>
                       <li><a href="#">Mapeo de terrenos</a></li>
-                    
                     </Link>
 
                     
