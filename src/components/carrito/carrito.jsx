@@ -12,6 +12,7 @@ export default class Carrito extends React.Component{
             {cartDataSingleton.products.map(e => buildProductSummary(e, () => {
               this.setState({})
             }))}
+            <h1>Total: ${getTotalPrice(cartDataSingleton.products)}</h1>
           </main>
       </body>
     );
@@ -31,4 +32,18 @@ return (<section class="producto">
   onClick.call()
 }}>quitar producto</button>
 </section>)
+}
+
+const getTotalPrice = (products = []) => {
+  if(products.length === 0){
+    return 0;
+  }
+
+  let total = 0;
+
+  for(let product of products){
+    total+=product.price
+  }
+
+  return total;
 }
