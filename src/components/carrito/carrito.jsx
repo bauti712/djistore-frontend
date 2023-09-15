@@ -1,32 +1,27 @@
 import React from "react";
 import "./carrito.css";
 import {Link} from 'react-router-dom';
+import { cartData as cartDataSingleton } from '../../cart_data'
+import { Product } from "../../models/product";
 
 export default function Carrito() {
+  
   return (
-    
-
-
-
     <body>
-        
         <main>
-            <section class="producto">
-                
-                <h2>Producto 1</h2>
-                <p>Precio: $10.00</p>
-                <button class="agregar-al-carrito">Agregar al carrito</button>
-            </section>
-            <section class="producto">
-                
-                <h2>Producto 2</h2>
-                <p>Precio: $15.00</p>
-                <button class="agregar-al-carrito">Agregar al carrito</button>
-            </section>
+          {cartDataSingleton.products.map(e => buildProductSummary(e))}
         </main>
-        
     </body>
     
 
   );
+}
+
+const buildProductSummary = (product = new Product()) => {
+return (<section class="producto">
+                
+<h2>{product.name}</h2>
+<p>Precio: ${product.price}</p>
+<button class="agregar-al-carrito">Agregar al carrito</button>
+</section>)
 }
