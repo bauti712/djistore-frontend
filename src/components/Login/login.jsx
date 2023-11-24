@@ -12,12 +12,12 @@ export default function Login() {
     e.preventDefault()
     try {
       await axios.post("http://localhost:8080/login",{email,password})
-      console.log("inicio de sesion exitoso")
+      alert("inicio de sesion exitoso")
       
       
     } catch (error) {
-      console.log("no se pudo iniciar sesion")
-      console.log(email,password)
+      alert("no se pudo iniciar sesion")
+      
 
       
     }

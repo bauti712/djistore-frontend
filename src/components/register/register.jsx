@@ -14,17 +14,17 @@ export default function Register() {
     if (password === repeatPassword){
       try {
         await axios.post("http://localhost:8080/register",{email,password,name})
-        console.log("inicio de sesion exitoso")
+        alert("cuenta creada exitosamente")
         
       } catch (error) {
-        console.log("no se pudo iniciar sesion")
+        alert("no se pudo crear la cuenta")
         
       }
 
       
     }
     else{
-      console.log("las contraseñas no son iguales")
+      alert("las contraseñas no son iguales")
     }
     
   }
