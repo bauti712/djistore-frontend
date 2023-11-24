@@ -1,20 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.css";
 import {Link} from 'react-router-dom';
+import axios from "axios";
+
 
 export default function Login() {
+  const [email, nombre]=useState("")
+  const [password, contraseña] =useState("")
+  const manejarLogin = async (e) =>{
+    e.preventDefault()
+    try {
+      await axios.post("http://localhost:8080/login",{email,password})
+      console.log("inicio de sesion exitoso")
+      
+    } catch (error) {
+      console.log("no se pudo iniciar sesion")
+      
+    }
+  }
+
   return (
     <div className="login-container">
       <form className="login-form" action="#" method="post">
         <h2>Iniciar Sesión</h2>
         <div className="input-container">
           <label htmlFor="nombre">Nombre</label>
-          <input type="text" id="nombre" name="nombre" required />
+          <input type="text" id="nombre" name="nombre" value ={email} onChange={(e) => nombre (e.target.value)} required />
         </div>
         
         <div className="input-container">
           <label htmlFor="contrasena">Contraseña</label>
-          <input type="password" id="contrasena" name="contrasena" required />
+          <input type="password" id="contrasena" name="contrasena" value ={password} onChange={(e) => contraseña (e.target.value)} required />
         </div>
         
 
