@@ -4,17 +4,21 @@ import {Link} from 'react-router-dom';
 import axios from "axios";
 
 
+
 export default function Login() {
   const [email, nombre]=useState("")
   const [password, contraseña] =useState("")
-  const manejarLogin = async (e) =>{
+  const login = async (e) =>{
     e.preventDefault()
     try {
       await axios.post("http://localhost:8080/login",{email,password})
       console.log("inicio de sesion exitoso")
       
+      
     } catch (error) {
       console.log("no se pudo iniciar sesion")
+      console.log(email,password)
+
       
     }
   }
@@ -35,7 +39,7 @@ export default function Login() {
         
 
         <div className ="botoneslogin">
-          <button type="submit">Iniciar Sesión</button>
+          <button type="submit"  onClick ={login}>Iniciar Sesión  </button>
           <Link to='/register'>
             <button type="submit">Crear cuenta </button>
           
