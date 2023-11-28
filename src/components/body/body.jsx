@@ -3,6 +3,7 @@ import "./body.css";
 import { useContext, useEffect, useState } from "react";
 import { dataContext } from "../Context/DataContext";
 import axios from "axios";
+import { cartData } from "../../cart_data";
 
 
 export default function Body() {
@@ -34,7 +35,11 @@ export default function Body() {
                 <div className="info-product">
                   <h3>{product.name}</h3>
                   <h4>{product.price}$</h4>
-                  <button onClick={() => (product)}>Comprar</button>
+                  <button onClick={() => {
+                    console.log(product.name)
+                    cartData.addProductToCart(product)
+                    
+                  }}>Añadir al carro</button>
                   <a href="">INFO</a>
                 </div>
               </div>

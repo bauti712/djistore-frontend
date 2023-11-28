@@ -1,7 +1,8 @@
 import React, { setState} from "react";
 import "./carrito.css";
-import { cartData as cartDataSingleton } from '../../cart_data'
+import { cartData, cartData as cartDataSingleton } from '../../cart_data'
 import { Product } from "../../models/product";
+import axios from "axios";
 
 export default class Carrito extends React.Component{
 
@@ -13,7 +14,12 @@ export default class Carrito extends React.Component{
               this.setState({})
             }))}
             <h1>Total: ${getTotalPrice(cartDataSingleton.products)}</h1>
+            <button onClick={buy}>comprar</button>
+            
+           
+            
           </main>
+          <br />
       </body>
     );
   }
@@ -46,6 +52,24 @@ const getTotalPrice = (products = []) => {
   }
 
   return total;
+}
+
+const buy = async ()=>{
+  const countedProducts =cartData.getCountedProducts()
+  
+
+  const mapedProducts = {
+    products: countedProducts
+  }
+
+  const url = "http://localhost:8080/buy"
+  const response = await axios.post(url, mapedProducts)
+  console.log(response)
+  if (response.status===201){
+    alert("compra realizada con exito")
+
+  }
+
 }
 
 
