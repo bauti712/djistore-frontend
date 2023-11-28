@@ -6,39 +6,58 @@ import Mini2 from "../../multimedia/Mini2.jpg";
 import Air1 from "../../multimedia/Air1.jpg";
 import { Product } from "../../models/product";
 import { cartData as cartDataSingleton } from "../../cart_data";
+import { useContext, useEffect, useState } from "react";
+import { dataContext } from "../Context/DataContext";
+import "./body.css";
+
+import axios from "axios";
 
 export default function Body() {
-  return (
-    <body>
-      {buildProduct(new Product(Mini2, "dji Mini 2", 80))}
-      {buildProduct(new Product(Air, "dji air 2", 120))}
-      {buildProduct(new Product(Spark, "dji spark", 450))}
-      {buildProduct(new Product(Air1, "Air", 80))}
-      {buildProduct(new Product(Inspire, "dji Inspire", 25))}
-    </body>
-  );
+
+    const [data1, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/products');
+                setData(response.data);
+
+
+            } catch (error) {
+                console.error('Error interno del servidor:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+    console.log(data1);
+    console.log (data1["products"])
+    return data1["products"].map((product) => {
+      return (
+          <div id='bodyMoviles'>
+              <div class="body-items">
+                  <div class="container-items">
+
+                      <div className="item" key={product.id}>
+                          <figure>
+                              <img src={product.img} alt="img-product-card"/>
+                          </figure>
+                          <div class="info-product">
+                              <h3>{product.name}</h3>
+                              <h4>{product.price}$</h4>
+                              <a href="">INFO</a>
+                              
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+      );
+
+  });
+  
+  
 }
 
-const buildProduct = (product = new Product()) => {
-  return (
-    <div class="container-items">
-      <div class="item">
-        <figure>
-          <img src={product.src} alt="producto-drone" />
-        </figure>
-        <div class="info-producto">
-          <h2>{product.name}</h2>
-          <p class="price">${product.price}</p>
-          <button
-            onClick={() => {
-              cartDataSingleton.addProductToCart(product);
-            }}
-          >
-            añadir al carro
-          </button>
-          <button> Ver especificaciones </button>
-        </div>
-      </div>
-    </div>
-  );
-};
+
