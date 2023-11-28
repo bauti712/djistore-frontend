@@ -47,3 +47,8 @@ const getTotalPrice = (products = []) => {
 
   return total;
 }
+
+
+
+
+
