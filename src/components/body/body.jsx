@@ -13,6 +13,7 @@ import "./body.css";
 import axios from "axios";
 
 export default function Body() {
+    
 
     const [data1, setData] = useState([]);
 
@@ -32,30 +33,31 @@ export default function Body() {
     }, []);
     console.log(data1);
     console.log (data1["products"])
-    return data1["products"].map((product) => {
-      return (
-          <div id='bodyMoviles'>
-              <div class="body-items">
-                  <div class="container-items">
-
-                      <div className="item" key={product.id}>
-                          <figure>
-                              <img src={product.img} alt="img-product-card"/>
-                          </figure>
-                          <div class="info-product">
-                              <h3>{product.name}</h3>
-                              <h4>{product.price}$</h4>
-                              <a href="">INFO</a>
-                              
-                          </div>
-                      </div>
+    return (
+        <div id='bodyMoviles'>
+          <div className="body-items">
+            <div className="container-items">
+              {data1 && data1["products"] ? (
+                data1["products"].map((product) => (
+                  <div className="item" key={product.id}>
+                    <figure>
+                      <img src={product.img} alt="img-product-card"/>
+                    </figure>
+                    <div className="info-product">
+                      <h3>{product.name}</h3>
+                      <h4>{product.price}$</h4>
+                      <a href="">INFO</a>
+                      
+                    </div>
                   </div>
-              </div>
+                ))
+              ) : (
+                <p>No hay productos disponibles.</p>
+              )}
+            </div>
           </div>
-          
+        </div>
       );
-
-  });
   
   
 }
